@@ -22,10 +22,14 @@ def makeScore(key):
 
 
 def searchSameLine(fname, dic):
+    count = 0
+    global file_object
     with open(fname) as f:
         targetLines = f.readlines()
         for targetLine in targetLines:
             targetLine = targetLine.strip("\n")
+            if count % 5000 == 1:
+                file_object.write(">>>>>>>>>>>>>>>>>>>>>>line:%d\n" % count)
             if targetLine in dic:
                 makeScore(targetLine)
 
@@ -41,3 +45,5 @@ searchSameLine(os.getcwd() + "/dataset/test.000000_0.0", dict)
 file_object.write("2个文件中相同的行如下:\n")
 for item in score:
     file_object.write(item + "\n")
+
+file_object.close()
