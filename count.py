@@ -10,10 +10,11 @@ file_object = open(os.getcwd() + '/countLog.txt', 'w+')
 def convertToDict(fname):
     with open(fname) as f:
         idfas = f.readlines()
-        a =[]
+        a = {}
         for idfa in idfas:
             idfa = idfa.strip("\n")
-            a.append(idfa)
+            a[idfa] = 1
+            #a.append(idfa)
         return a
 
 def makeScore(key):
@@ -28,17 +29,19 @@ def searchSameLine(fname, dic):
         targetLines = f.readlines()
         for targetLine in targetLines:
             targetLine = targetLine.strip("\n")
-            if count % 5000 == 1:
-                file_object.write(">>>>>>>>>>>>>>>>>>>>>>line:%d\n" % count)
-            if targetLine in dic:
+            #if count % 50 == 1:
+            #    file_object.write(">>>>>>>>>>>>>>>>>>>>>>line:%d\n" % count)
+            #if targetLine in dic:
+            if dic.has_key(targetLine):
                 makeScore(targetLine)
+            count = count + 1
 
 
 #把小文件加入dict
-dict = convertToDict(os.getcwd() + "/dataset/test.idfa.csv")
+dict = convertToDict(os.getcwd() + "/dataset/idfa.csv")
 
 #寻找大文件中命中dict的项目
-searchSameLine(os.getcwd() + "/dataset/test.000000_0.0", dict)
+searchSameLine(os.getcwd() + "/dataset/000000_0.0", dict)
 
 
 #把相同的项目打印到结果文件中
