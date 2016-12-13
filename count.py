@@ -38,10 +38,10 @@ def searchSameLine(fname, dic):
 
 
 #把小文件加入dict
-dict = convertToDict(os.getcwd() + "/dataset/idfa.csv")
+dict = convertToDict(os.getcwd() + "/dataset/test.idfa.csv")
 
 #寻找大文件中命中dict的项目
-searchSameLine(os.getcwd() + "/dataset/000000_0.0", dict)
+searchSameLine(os.getcwd() + "/dataset/test.000000_0.0", dict)
 
 
 #把相同的项目打印到结果文件中
